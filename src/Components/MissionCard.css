@@ -1,0 +1,21 @@
+.MissionCard {
+  border: 1px solid #2e4a62;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  background: #112b3c;
+}
+
+.MissionCard-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.MissionCard-status {
+  color: #9ecfff;
+}
+
+.MissionCard-crew {
+  font-size: 14px;
+  color: #ccc;
+}
