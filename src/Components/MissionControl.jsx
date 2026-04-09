@@ -8,8 +8,16 @@ import "./MissionAction.css";
 import "./MissionFilter.css";
 
 function MissionControl({ missions }) {
-  const [missionList, setMissionList] = useState(missions);
+   const [missionList, setMissionList] = useState(
+    missions.map(mission => ({
+      ...mission,
+      updateCount: 0
+    }))
+  );
+
+
   const [filter, setFilter] = useState("All");
+  const [numberOfMissions, setNumberOfMissions] = useState(0);
 
   function updateMissionStatus(id, newStatus) {
     setMissionList(currMissions =>
@@ -20,6 +28,16 @@ function MissionControl({ missions }) {
       )
     );
   }
+
+  const updateButton = (id) => {
+  setMissionList(currMissions =>
+    currMissions.map(mission =>
+      mission.id === id
+        ? { ...mission, updateCount: mission.updateCount + 1 }
+        : mission
+    )
+  );
+};
 
   const displayedMissions =
     filter === "All"
@@ -40,6 +58,9 @@ function MissionControl({ missions }) {
           <MissionAction
             missionId={mission.id}
             updateMissionStatus={updateMissionStatus}
+            updateButton={updateButton}
+            updateCount={mission.updateCount}
+
           />
         </div>
       ))}
